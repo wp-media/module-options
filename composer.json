@@ -34,17 +34,15 @@
 			"class-abstract-options.php",
 			"class-options.php",
 			"class-options-data.php"
-		]
+		],
+		"exclude-from-classmap": [ "/Tests/" ]
 	},
 	"autoload-dev": {
-		"psr-4": {
-			"WPMedia\\Options\\Tests\\Unit\\": "tests/Unit",
-			"WPMedia\\Options\\Tests\\Integration\\": "tests/Integration"
-		}
+		"psr-4": { "WPMedia\\Options\\Tests\\": "Tests/" }
 	},
 	"scripts": {
-		"test-unit":"\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration tests/Unit/phpunit.xml.dist",
-		"test-integration": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration tests/Integration/phpunit.xml.dist",
+		"test-unit":"\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration Tests/Unit/phpunit.xml.dist",
+		"test-integration": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration Tests/Integration/phpunit.xml.dist",
 		"run-tests": [
 			"@test-unit",
 			"@test-integration"
