@@ -1,9 +1,9 @@
 <?php
 
-namespace WPMedia\Options\Tests\Unit\Options;
+namespace WPMedia\Options\Tests\Integration\Options;
 
 use WP_Rocket\Admin\Options;
-use WPMedia\Options\Tests\Unit\TestCase;
+use WPMedia\Options\Tests\Integration\TestCase;
 
 /**
  * @covers WP_Rocket\Admin\Options::get
