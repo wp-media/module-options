@@ -1,18 +1,18 @@
 <?php
 
-namespace WPMedia\Options\Tests\Unit\Options_Data;
+namespace WPMedia\Options\Tests\Unit\OptionArray;
 
-use WP_Rocket\Admin\Options_Data;
+use WPMedia\Options\OptionArray;
 use WPMedia\Options\Tests\Unit\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options_Data::get_options
- * @group  OptionsData
+ * @covers WPMedia\Options\OptionArray::get_options
+ * @group  OptionArray
  */
 class Test_GetOptions extends TestCase {
 
 	public function testShouldReturnEmptyWhenNoOptions() {
-		$options = new Options_Data( [] );
+		$options = new OptionArray( [], 'wpmedia' );
 		$this->assertEmpty( $options->get_options() );
 	}
 
@@ -22,7 +22,7 @@ class Test_GetOptions extends TestCase {
 			'test2' => 'off',
 			'test3' => 'heya',
 		];
-		$options = new Options_Data( $data );
+		$options = new OptionArray( $data, 'wpmedia' );
 		$this->assertSame( $data, $options->get_options() );
 	}
 }

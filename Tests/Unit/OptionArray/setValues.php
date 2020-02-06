@@ -1,13 +1,13 @@
 <?php
 
-namespace WPMedia\Options\Tests\Unit\Options_Data;
+namespace WPMedia\Options\Tests\Unit\OptionArray;
 
-use WP_Rocket\Admin\Options_Data;
+use WPMedia\Options\OptionArray;
 use WPMedia\Options\Tests\Unit\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options_Data::set_values
- * @group  OptionsData
+ * @covers WPMedia\Options\OptionArray::set_values
+ * @group  OptionArray
  */
 class Test_SetValues extends TestCase {
 	private static $data = [
@@ -20,7 +20,7 @@ class Test_SetValues extends TestCase {
 	];
 
 	public function testShouldAddOptionsWhenDontExist() {
-		$options = new Options_Data( [] );
+		$options = new OptionArray( [], 'wpmedia' );
 
 		// Check that the options do not exist.
 		foreach ( self::$data as $key => $value ) {
@@ -37,7 +37,7 @@ class Test_SetValues extends TestCase {
 	}
 
 	public function testShouldOverrideOptionsWhenExists() {
-		$options = new Options_Data( self::$data );
+		$options = new OptionArray( self::$data, 'wpmedia' );
 
 		// Check that the options do exist.
 		foreach ( self::$data as $key => $value ) {

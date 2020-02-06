@@ -1,13 +1,13 @@
 <?php
 
-namespace WPMedia\Options\Tests\Unit\Options_Data;
+namespace WPMedia\Options\Tests\Unit\OptionArray;
 
-use WP_Rocket\Admin\Options_Data;
+use WPMedia\Options\OptionArray;
 use WPMedia\Options\Tests\Unit\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options_Data::has
- * @group  OptionsData
+ * @covers WPMedia\Options\OptionArray::has
+ * @group  OptionArray
  */
 class Test_Has extends TestCase {
 	private static $data = [
@@ -20,7 +20,7 @@ class Test_Has extends TestCase {
 	];
 
 	public function testShouldReturnTrueWhenHasOption() {
-		$options = new Options_Data( self::$data );
+		$options = new OptionArray( self::$data, 'wpmedia' );
 
 		foreach ( array_keys( self::$data ) as $key ) {
 			$this->assertTrue( $options->has( $key ) );
@@ -28,7 +28,7 @@ class Test_Has extends TestCase {
 	}
 
 	public function testShouldReturnFalseWhenDoesnotExist() {
-		$options = new Options_Data( self::$data );
+		$options = new OptionArray( self::$data, 'wpmedia' );
 
 		$this->assertFalse( $options->has( 'invalid_key' ) );
 		$this->assertFalse( $options->has( 'test4' ) );

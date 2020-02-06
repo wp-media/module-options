@@ -1,13 +1,13 @@
 <?php
 
-namespace WPMedia\Options\Tests\Integration\Options_Data;
+namespace WPMedia\Options\Tests\Integration\OptionArray;
 
-use WP_Rocket\Admin\Options_Data;
+use WPMedia\Options\OptionArray;
 use WPMedia\Options\Tests\Integration\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options_Data::get
- * @group  OptionsData
+ * @covers WPMedia\Options\OptionArray::get
+ * @group  OptionArray
  */
 class Test_Get extends TestCase {
 
@@ -17,7 +17,7 @@ class Test_Get extends TestCase {
 			'test2' => 'off',
 			'test3' => 'heya',
 		];
-		$options = new Options_Data( $data );
+		$options = new OptionArray( $data, 'wpmedia' );
 
 		foreach ( array_keys( $data ) as $key ) {
 			$default = "{$key}_default";
@@ -25,11 +25,11 @@ class Test_Get extends TestCase {
 				return $default;
 			};
 
-			add_filter( "pre_get_rocket_option_{$key}", $callback, 10, 2 );
+			add_filter( "wpmedia_pre_get_option_{$key}", $callback, 10, 2 );
 
 			$this->assertSame( $default, $options->get( $key, $default ) );
 
-			remove_filter( "pre_get_rocket_option_{$key}", $callback );
+			remove_filter( "wpmedia_pre_get_option_{$key}", $callback );
 		}
 	}
 
@@ -42,7 +42,7 @@ class Test_Get extends TestCase {
 				'setting2' => 1,
 			],
 		];
-		$options = new Options_Data( $data );
+		$options = new OptionArray( $data, 'wpmedia' );
 
 		foreach ( $data as $key => $value ) {
 			$this->assertSame( $value, $options->get( $key, 'default' ) );
@@ -58,7 +58,7 @@ class Test_Get extends TestCase {
 				'setting2' => 1,
 			],
 		];
-		$options = new Options_Data( $data );
+		$options = new OptionArray( $data, 'wpmedia' );
 
 		foreach ( [ 'test10', 'test11', 'setting1' ] as $key ) {
 			$this->assertSame( 'default', $options->get( $key, 'default' ) );
@@ -71,7 +71,7 @@ class Test_Get extends TestCase {
 			'test2' => 'off',
 			'test3' => 'heya',
 		];
-		$options = new Options_Data( $data );
+		$options = new OptionArray( $data, 'wpmedia' );
 
 		foreach ( $data as $key => $value ) {
 			$filtered = "{$key}_filtered";
@@ -79,11 +79,11 @@ class Test_Get extends TestCase {
 				return $filtered;
 			};
 
-			add_filter( "get_rocket_option_{$key}", $callback );
+			add_filter( "wpmedia_get_option_{$key}", $callback );
 
 			$this->assertSame( $filtered, $options->get( $key, 'default' ) );
 
-			remove_filter( "get_rocket_option_{$key}", $callback );
+			remove_filter( "wpmedia_get_option_{$key}", $callback );
 		}
 	}
 }

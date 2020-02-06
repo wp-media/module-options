@@ -1,15 +1,15 @@
 <?php
 
-namespace WPMedia\Options\Tests\Unit\Options_Data;
+namespace WPMedia\Options\Tests\Unit\OptionArray;
 
 use Brain\Monkey\Filters;
 use Mockery;
-use WP_Rocket\Admin\Options_Data;
+use WPMedia\Options\OptionArray;
 use WPMedia\Options\Tests\Unit\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options_Data::get
- * @group  OptionsData
+ * @covers WPMedia\Options\OptionArray::get
+ * @group  OptionArray
  */
 class Test_Get extends TestCase {
 
@@ -19,12 +19,12 @@ class Test_Get extends TestCase {
 			'test2' => 'off',
 			'test3' => 'heya',
 		];
-		$options = Mockery::mock( Options_Data::class . '[has]', [ $data ] );
+		$options = Mockery::mock( OptionArray::class . '[has]', [ $data, 'wpmedia' ] );
 		$options->shouldReceive( 'has' )->never();
 
 		foreach ( $data as $key => $value ) {
 			$expected = "{$value}_filtered";
-			Filters\expectApplied( "pre_get_rocket_option_{$key}" )
+			Filters\expectApplied( "wpmedia_pre_get_option_{$key}" )
 				->once()
 				->with( null, 'default' )
 				->andReturn( $expected );
@@ -42,7 +42,7 @@ class Test_Get extends TestCase {
 				'setting2' => 1,
 			],
 		];
-		$options = Mockery::mock( Options_Data::class . '[has]', [ $data ] );
+		$options = Mockery::mock( OptionArray::class . '[has]', [ $data, 'wpmedia' ] );
 
 		foreach ( $data as $key => $value ) {
 			$options->shouldReceive( 'has' )->once()->with( $key )->andReturnTrue();
@@ -59,7 +59,7 @@ class Test_Get extends TestCase {
 				'setting2' => 1,
 			],
 		];
-		$options = Mockery::mock( Options_Data::class . '[has]', [ $data ] );
+		$options = Mockery::mock( OptionArray::class . '[has]', [ $data, 'wpmedia' ] );
 
 		foreach ( $data as $key => $value ) {
 			$options->shouldReceive( 'has' )->once()->with( $key )->andReturnFalse();
@@ -73,10 +73,10 @@ class Test_Get extends TestCase {
 			'test2' => 'off',
 			'test3' => 'heya',
 		];
-		$options = new Options_Data( $data );
+		$options = new OptionArray( $data, 'wpmedia' );
 
 		foreach ( $data as $key => $value ) {
-			Filters\expectApplied( "get_rocket_option_{$key}" )
+			Filters\expectApplied( "wpmedia_get_option_{$key}" )
 				->once()
 				->with( $value, 'default' )
 				->andReturn( $key );
