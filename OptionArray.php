@@ -1,27 +1,36 @@
 <?php
-namespace WP_Rocket\Admin;
+namespace WPMedia\Options;
 
 /**
- * Manages the data inside an option.
+ * Manages the array data coming from an option.
  *
  * @since 3.0
  * @author Remy Perona
  */
-class Options_Data {
+class OptionArray {
 	/**
-	 * Option data
+	 * Array of data coming from an option
 	 *
-	 * @var Array Array of data inside the option
+	 * @var array
 	 */
 	private $options;
 
 	/**
+	 * Slug used for the option name.
+	 *
+	 * @var string
+	 */
+	private $slug;
+
+	/**
 	 * Constructor
 	 *
-	 * @param Array $options Array of data coming from an option.
+	 * @param array  $options Array of data coming from an option.
+	 * @param string $slug    Slug used for the option name.
 	 */
-	public function __construct( $options ) {
+	public function __construct( $options, $slug ) {
 		$this->options = $options;
+		$this->slug    = $slug;
 	}
 
 	/**
@@ -49,22 +58,16 @@ class Options_Data {
 	 */
 	public function get( $key, $default = '' ) {
 		/**
-		 * Pre-filter any WP Rocket option before read
+		 * Pre-filter any option before read
 		 *
 		 * @since 2.5
 		 *
 		 * @param mixed $default The default value.
 		*/
-		$value = apply_filters( 'pre_get_rocket_option_' . $key, null, $default ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+		$value = apply_filters( $this->slug . '_pre_get_option_' . $key, null, $default ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
 
 		if ( null !== $value ) {
 			return $value;
-		}
-
-		if ( 'consumer_key' === $key && rocket_has_constant( 'WP_ROCKET_KEY' ) ) {
-			return WP_ROCKET_KEY;
-		} elseif ( 'consumer_email' === $key && rocket_has_constant( 'WP_ROCKET_EMAIL' ) ) {
-			return WP_ROCKET_EMAIL;
 		}
 
 		if ( ! $this->has( $key ) ) {
@@ -72,13 +75,14 @@ class Options_Data {
 		}
 
 		/**
-		 * Filter any WP Rocket option after read
+		 * Filter any option after read
 		 *
 		 * @since 2.5
 		 *
+		 * @param mixed $value   The value associated with the provided key.
 		 * @param mixed $default The default value.
 		*/
-		return apply_filters( 'get_rocket_option_' . $key, $this->options[ $key ], $default ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+		return apply_filters( $this->slug . '_get_option_' . $key, $this->options[ $key ], $default ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
 	}
 
 	/**
