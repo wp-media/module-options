@@ -2,11 +2,11 @@
 
 namespace WPMedia\Options\Tests\Integration\Options;
 
-use WP_Rocket\Admin\Options;
+use WPMedia\Options\Options;
 use WPMedia\Options\Tests\Integration\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options::delete
+ * @covers WPMedia\Options\Options::delete
  * @group  Options
  */
 class Test_Delete extends TestCase {

@@ -3,11 +3,11 @@
 namespace WPMedia\Options\Tests\Unit\Options;
 
 use Brain\Monkey\Functions;
-use WP_Rocket\Admin\Options;
+use WPMedia\Options\Options;
 use WPMedia\Options\Tests\Unit\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options::set
+ * @covers WPMedia\Options\Options::set
  * @group Options
  */
 class Test_Set extends TestCase {

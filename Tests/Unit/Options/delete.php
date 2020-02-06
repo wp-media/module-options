@@ -3,11 +3,11 @@
 namespace WPMedia\Options\Tests\Unit\Options;
 
 use Brain\Monkey\Functions;
-use WP_Rocket\Admin\Options;
+use WPMedia\Options\Options;
 use WPMedia\Options\Tests\Unit\TestCase;
 
 /**
- * @covers WP_Rocket\Admin\Options::delete
+ * @covers WPMedia\Options\Options::delete
  * @group  Options
  */
 class Test_Delete extends TestCase {
