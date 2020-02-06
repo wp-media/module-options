@@ -1,7 +1,7 @@
 {
 	"name": "wp-media/options",
-	"description": "Options Handler for WordPress Options API Addon",
-	"homepage": "https://github.com/wp-media/cloudflare",
+	"description": "Options Handler for WordPress Options API",
+	"homepage": "https://github.com/wp-media/options",
 	"license": "GPL-2.0+",
 	"authors": [
 		{
@@ -15,8 +15,8 @@
 		"sort-packages": true
 	},
 	"support": {
-		"issues": "https://github.com/wp-media/cloudflare/issues",
-		"source": "https://github.com/wp-media/cloudflare"
+		"issues": "https://github.com/wp-media/options/issues",
+		"source": "https://github.com/wp-media/options"
 	},
     "require": {
 		"php": ">=5.6.0"
@@ -30,12 +30,7 @@
 		"wp-coding-standards/wpcs": "^2"
 	},
 	"autoload": {
-		"classmap": [
-			"class-abstract-options.php",
-			"class-options.php",
-			"class-options-data.php"
-		],
-		"exclude-from-classmap": [ "/Tests/" ]
+		"psr-4": { "WPMedia\\Options\\": "" }
 	},
 	"autoload-dev": {
 		"psr-4": { "WPMedia\\Options\\Tests\\": "Tests/" }
