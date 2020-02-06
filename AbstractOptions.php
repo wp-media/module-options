@@ -1,19 +1,39 @@
 <?php
-namespace WP_Rocket\Admin;
 
-defined( 'ABSPATH' ) || exit;
+namespace WPMedia\Options;
 
 /**
- * Manages options using the WordPress options API.
+ * Abstract class implementing OptionsInterface mandatory methods.
  *
- * @since 3.0
  * @author Remy Perona
  */
-abstract class Abstract_Options {
+abstract class AbstractOptions implements OptionsInterface {
+
+	/**
+	 * The prefix used by options.
+	 *
+	 * @author Remy Perona
+	 *
+	 * @var string
+	 */
+	protected $prefix;
+
+	/**
+	 * Gets the option name used to store the option in the WordPress database.
+	 *
+	 * @author Remy Perona
+	 *
+	 * @param string $name Unprefixed name of the option.
+	 *
+	 * @return string Option name used to store it
+	 */
+	public function getOptionName( $name ) {
+		return $this->prefix . $name;
+	}
+
 	/**
 	 * Gets the option for the given name. Returns the default value if the value does not exist.
 	 *
-	 * @since 3.0
 	 * @author Remy Perona
 	 *
 	 * @param string $name   Name of the option to get.
@@ -26,7 +46,6 @@ abstract class Abstract_Options {
 	/**
 	 * Sets the value of an option. Update the value if the option for the given name already exists.
 	 *
-	 * @since 3.0
 	 * @author Remy Perona
 	 * @param string $name Name of the option to set.
 	 * @param mixed  $value Value to set for the option.
@@ -38,7 +57,6 @@ abstract class Abstract_Options {
 	/**
 	 * Deletes the option with the given name.
 	 *
-	 * @since 3.0
 	 * @author Remy Perona
 	 *
 	 * @param string $name Name of the option to delete.
@@ -50,7 +68,6 @@ abstract class Abstract_Options {
 	/**
 	 * Checks if the option with the given name exists.
 	 *
-	 * @since 3.0
 	 * @author Remy Perona
 	 *
 	 * @param string $name Name of the option to check.
