@@ -1,13 +1,15 @@
 <?php
 namespace WPMedia\Options;
 
+use ArrayAccess;
+
 /**
  * Manages the array data coming from an option.
  *
  * @since 3.0
  * @author Remy Perona
  */
-class OptionArray {
+class OptionArray implements ArrayAccess {
 	/**
 	 * Array of data coming from an option
 	 *
@@ -124,5 +126,46 @@ class OptionArray {
 	 */
 	public function get_options() {
 		return $this->options;
+	}
+
+	/**
+	 * Whether an offset exists
+	 *
+	 * @param mixed $offset An offset to check for. 
+	 * @return bool
+	 */
+	public function offsetExists( $offset ) {
+		return $this->has( $offset );
+	}
+
+	/**
+	 * Offset to retrieve
+	 *
+	 * @param mixed $offset The offset to retrieve. 
+	 * @return mixed
+	 */
+	public function offsetGet( $offset ) {
+		return $this->get( $offset );
+	}
+
+	/**
+	 * Assign a value to the specified offset
+	 *
+	 * @param mixed $offset The offset to assign the value to.
+	 * @param mixed $value The value to set. 
+	 * @return void
+	 */
+	public function offsetSet( $offset, $value ) {
+		$this->set( $offset, $value );
+	}
+
+	/**
+	 * Unset an offset
+	 *
+	 * @param mixed $offset The offset to unset.
+	 * @return void
+	 */
+	public function offsetUnset( $offset ) {
+		unset( $this->options[ $offset ] );
 	}
 }
