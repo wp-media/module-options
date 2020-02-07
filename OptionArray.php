@@ -131,7 +131,7 @@ class OptionArray implements ArrayAccess {
 	/**
 	 * Whether an offset exists
 	 *
-	 * @param mixed $offset An offset to check for. 
+	 * @param mixed $offset An offset to check for.
 	 * @return bool
 	 */
 	public function offsetExists( $offset ) {
@@ -141,7 +141,7 @@ class OptionArray implements ArrayAccess {
 	/**
 	 * Offset to retrieve
 	 *
-	 * @param mixed $offset The offset to retrieve. 
+	 * @param mixed $offset The offset to retrieve.
 	 * @return mixed
 	 */
 	public function offsetGet( $offset ) {
@@ -152,7 +152,7 @@ class OptionArray implements ArrayAccess {
 	 * Assign a value to the specified offset
 	 *
 	 * @param mixed $offset The offset to assign the value to.
-	 * @param mixed $value The value to set. 
+	 * @param mixed $value The value to set.
 	 * @return void
 	 */
 	public function offsetSet( $offset, $value ) {
