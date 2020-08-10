@@ -7,7 +7,6 @@ use ArrayAccess;
  * Manages the array data coming from an option.
  *
  * @since 3.0
- * @author Remy Perona
  */
 class OptionArray implements ArrayAccess {
 	/**
@@ -39,7 +38,6 @@ class OptionArray implements ArrayAccess {
 	 * Checks if the provided key exists in the option data array.
 	 *
 	 * @since 3.0
-	 * @author Remy Perona
 	 *
 	 * @param string $key key name.
 	 * @return boolean true if it exists, false otherwise
@@ -52,7 +50,6 @@ class OptionArray implements ArrayAccess {
 	 * Gets the value associated with a specific key.
 	 *
 	 * @since 3.0
-	 * @author Remy Perona
 	 *
 	 * @param string $key key name.
 	 * @param mixed  $default default value to return if key doesn't exist.
@@ -91,7 +88,6 @@ class OptionArray implements ArrayAccess {
 	 * Sets the value associated with a specific key.
 	 *
 	 * @since 3.0
-	 * @author Remy Perona
 	 *
 	 * @param string $key key name.
 	 * @param mixed  $value to set.
@@ -105,7 +101,6 @@ class OptionArray implements ArrayAccess {
 	 * Sets multiple values.
 	 *
 	 * @since 3.0
-	 * @author Remy Perona
 	 *
 	 * @param array $options An array of key/value pairs to set.
 	 * @return void
@@ -120,7 +115,6 @@ class OptionArray implements ArrayAccess {
 	 * Gets the option array.
 	 *
 	 * @since 3.0
-	 * @author Remy Perona
 	 *
 	 * @return array
 	 */

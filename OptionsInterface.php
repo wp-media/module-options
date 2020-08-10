@@ -13,12 +13,10 @@ interface OptionsInterface {
 	 *
 	 * @return string Option name used to store it
 	 */
-	public function getOptionName( $name);
+	public function get_option_name( $name);
 
 	/**
 	 * Gets the option for the given name. Returns the default value if the value does not exist.
-	 *
-	 * @author Remy Perona
 	 *
 	 * @param string $name   Name of the option to get.
 	 * @param mixed  $default Default value to return if the value does not exist.
@@ -30,7 +28,6 @@ interface OptionsInterface {
 	/**
 	 * Sets the value of an option. Update the value if the option for the given name already exists.
 	 *
-	 * @author Remy Perona
 	 * @param string $name Name of the option to set.
 	 * @param mixed  $value Value to set for the option.
 	 *
@@ -41,8 +38,6 @@ interface OptionsInterface {
 	/**
 	 * Deletes the option with the given name.
 	 *
-	 * @author Remy Perona
-	 *
 	 * @param string $name Name of the option to delete.
 	 *
 	 * @return void
@@ -51,8 +46,6 @@ interface OptionsInterface {
 
 	/**
 	 * Checks if the option with the given name exists.
-	 *
-	 * @author Remy Perona
 	 *
 	 * @param string $name Name of the option to check.
 	 *
