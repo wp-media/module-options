@@ -34,10 +34,6 @@ matrix:
   - name: Static Analysis
     php: 7.4
     env: WP_TRAVISCI=phpstan
-  allow_failures:
-  - name: Static Analysis
-    php: 7.4
-    env: WP_TRAVISCI=phpstan
 before_install:
   # Unless we need XDebug, disable it for improved performance.
   - phpenv config-rm xdebug.ini || true
