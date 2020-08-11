@@ -14,7 +14,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @var array
 	 */
-	private $options;
+	private $options = [];
 
 	/**
 	 * Slug used for the option name.
@@ -55,7 +55,7 @@ class OptionArray implements ArrayAccess {
 	 * @param mixed  $default default value to return if key doesn't exist.
 	 * @return mixed
 	 */
-	public function get( $key, $default = '' ) {
+	public function get( $key, $default = null ) {
 		/**
 		 * Pre-filter any option before read
 		 *

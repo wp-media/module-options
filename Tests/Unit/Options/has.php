@@ -11,26 +11,26 @@ use WPMedia\Options\Tests\Unit\TestCase;
  * @group Options
  */
 class Test_Has extends TestCase {
+	/**
+	 * @dataProvider configTestData
+	 */
+	public function testShouldReturnExpected( $option ) {
+		$options = new Options();
 
-    public function testShouldReturnFalseWhenOptionNotExist() {
-        Functions\expect('get_option')
-        ->once()
-        ->with('wp_media_option', null)
-        ->andReturn(null);
+		if ( false === $option['value'] ) {
+			Functions\expect( 'get_option' )
+			->once()
+			->with( $option['name'], null )
+			->andReturn( null );
 
-        $options = new Options('wp_media_');
+			$this->assertFalse( $options->has( $option['name'] ) );
+		} else {
+			Functions\expect( 'get_option' )
+			->once()
+			->with( $option['name'], null )
+			->andReturn( $option['value'] );
 
-        $this->assertFalse($options->has('option'));
-    }
-
-    public function testShouldReturnTrueWhenOptionExist() {
-        Functions\expect('get_option')
-        ->once()
-        ->with('wp_media_option', null)
-        ->andReturn('value');
-
-        $options = new Options('wp_media_');
-
-        $this->assertTrue($options->has('option'));
-    }
+			$this->assertTrue( $options->has( $option['name'] ) );
+		}
+	}
 }
