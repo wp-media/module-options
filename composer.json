@@ -45,6 +45,7 @@
 		"run-tests": [
 			"@test-unit",
 			"@test-integration"
-		]
+		],
+		"phpcs": "phpcs --basepath=."
 	}
 }
