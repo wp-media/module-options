@@ -12,76 +12,38 @@ use WPMedia\Options\Tests\Unit\TestCase;
  * @group  OptionArray
  */
 class Test_Get extends TestCase {
+	/**
+	 * @dataProvider configTestData
+	 *
+	 * @return void
+	 */
+	public function testShouldReturnExpectedValue( $option, $key, $config, $expected ) {
+		$options = Mockery::mock( OptionArray::class . '[has]', [ $option, 'wpmedia' ] );
 
-	public function testShouldReturnFilteredValueWhenPreFiltering() {
-		$data    = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => 'heya',
-		];
-		$options = Mockery::mock( OptionArray::class . '[has]', [ $data, 'wpmedia' ] );
-		$options->shouldReceive( 'has' )->never();
+		if ( isset( $config['pre'] ) ) {
+			$options->shouldReceive( 'has' )->never();
 
-		foreach ( $data as $key => $value ) {
-			$expected = "{$value}_filtered";
 			Filters\expectApplied( "wpmedia_pre_get_option_{$key}" )
 				->once()
 				->with( null, 'default' )
-				->andReturn( $expected );
-
-			$this->assertSame( $expected, $options->get( $key, 'default' ) );
+				->andReturn( $config['pre'] );
+		} else {
+			$options->shouldReceive( 'has' )
+				->once()
+				->with( $key )
+				->andReturn( $config[ 'exists' ] );
 		}
-	}
 
-	public function testShouldReturnValueWhenExistsAndNoPrefiltering() {
-		$data    = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => [
-				'setting1' => 'some value',
-				'setting2' => 1,
-			],
-		];
-		$options = Mockery::mock( OptionArray::class . '[has]', [ $data, 'wpmedia' ] );
-
-		foreach ( $data as $key => $value ) {
-			$options->shouldReceive( 'has' )->once()->with( $key )->andReturnTrue();
-			$this->assertSame( $value, $options->get( $key, 'default' ) );
-		}
-	}
-
-	public function testShouldReturnDefaultWhenKeyDoesntExist() {
-		$data    = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => [
-				'setting1' => 'some value',
-				'setting2' => 1,
-			],
-		];
-		$options = Mockery::mock( OptionArray::class . '[has]', [ $data, 'wpmedia' ] );
-
-		foreach ( $data as $key => $value ) {
-			$options->shouldReceive( 'has' )->once()->with( $key )->andReturnFalse();
-			$this->assertSame( 'default', $options->get( $key, 'default' ) );
-		}
-	}
-
-	public function testShouldReturnFilteredValueWhenPostFiltering() {
-		$data    = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => 'heya',
-		];
-		$options = new OptionArray( $data, 'wpmedia' );
-
-		foreach ( $data as $key => $value ) {
+		if ( isset( $config['post'] ) ) {
 			Filters\expectApplied( "wpmedia_get_option_{$key}" )
 				->once()
-				->with( $value, 'default' )
-				->andReturn( $key );
-
-			$this->assertSame( $key, $options->get( $key, 'default' ) );
+				->with( $option[ $key ], 'default' )
+				->andReturn( $config['post'] );
 		}
+
+		$this->assertSame(
+			$expected,
+			$options->get( $key, 'default' )
+		);
 	}
 }

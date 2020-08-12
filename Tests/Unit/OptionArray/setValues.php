@@ -10,53 +10,20 @@ use WPMedia\Options\Tests\Unit\TestCase;
  * @group  OptionArray
  */
 class Test_SetValues extends TestCase {
-	private static $data = [
-		'test1' => 'some value',
-		'test2' => 'off',
-		'test3' => [
-			'setting1' => 'some value',
-			'setting2' => 1,
-		],
-	];
+	/**
+	 * @dataProvider configTestData
+	 */
+	public function testShouldSetValues( $option, $values, $expected ) {
+		$options = new OptionArray( $option, 'wpmedia' );
 
-	public function testShouldAddOptionsWhenDontExist() {
-		$options = new OptionArray( [], 'wpmedia' );
+		$options->set_values( $values );
 
-		// Check that the options do not exist.
-		foreach ( self::$data as $key => $value ) {
-			$this->assertFalse( $options->has( $key ) );
-		}
-
-		$options->set_values( self::$data );
-
-		// Check that the options do exist.
-		foreach ( self::$data as $key => $value ) {
+		foreach ( array_keys( $values ) as $key ) {
 			$this->assertTrue( $options->has( $key ) );
-			$this->assertSame( $value, $options->get( $key ) );
-		}
-	}
-
-	public function testShouldOverrideOptionsWhenExists() {
-		$options = new OptionArray( self::$data, 'wpmedia' );
-
-		// Check that the options do exist.
-		foreach ( self::$data as $key => $value ) {
-			$this->assertTrue( $options->has( $key ) );
-			$this->assertSame( $value, $options->get( $key ) );
-		}
-
-		// Modify the values.
-		$new_options = self::$data;
-		foreach ( $new_options as $key => $value ) {
-			$new_options[ $key ] = is_array( $value ) ? "{$key}_new" : "{$value}_new";
-		}
-
-		$options->set_values( $new_options );
-
-		// Check that each option was updated with the new value.
-		foreach ( $new_options as $key => $value ) {
-			$this->assertTrue( $options->has( $key ) );
-			$this->assertSame( $value, $options->get( $key ) );
+			$this->assertSame(
+				$expected[ $key ],
+				$options->get( $key )
+			);
 		}
 	}
 }
