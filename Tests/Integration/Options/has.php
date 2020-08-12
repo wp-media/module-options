@@ -18,7 +18,7 @@ class Test_Has extends TestCase {
             add_option( $option['name'], $option['value'] );
         }
 
-        $options = new Options( $option['name'] );
+        $options = new Options();
 
         if ( false !== $option['value'] ) {
             $this->assertTrue( $options->has( $option['name'] ) );
