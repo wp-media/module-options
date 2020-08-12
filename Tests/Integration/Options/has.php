@@ -11,24 +11,21 @@ use WPMedia\Options\Tests\Integration\TestCase;
  */
 class Test_Has extends TestCase {
     /**
-     * Test should return false when the option doesn't exist
-     */
-    public function testShouldReturnFalseWhenOptionNotExist() {
-        $options = new Options('wp_media_');
+	 * @dataProvider configTestData
+	 */
+    public function testShouldReturnExpected( $option ) {
+        if ( false !== $option['value'] ) {
+            add_option( $option['name'], $option['value'] );
+        }
 
-        $this->assertFalse($options->has('option'));
-    }
+        $options = new Options( $option['name'] );
 
-    /**
-     * Test should return true when the option exists
-     */
-    public function testShouldReturnTrueWhenOptionExist() {
-        add_option('wp_media_option', 'value');
+        if ( false !== $option['value'] ) {
+            $this->assertTrue( $options->has( $option['name'] ) );
+        } else {
+            $this->assertFalse( $options->has( $option['name'] ) );
+        }
 
-        $options = new Options('wp_media_');
-
-        $this->assertTrue($options->has('option'));
-
-        delete_option('wp_media_option');
+        delete_option( 'rocket' );
     }
 }
