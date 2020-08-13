@@ -14,7 +14,7 @@ class Test_Get extends TestCase {
 	 * @dataProvider configTestData
 	 */
 	public function testShouldReturnExpectedValue( $option, $expected ) {
-		$options = new Options();
+		$options = new SiteOptions();
 
 
 		if ( ! is_null( $option['value'] ) ) {
