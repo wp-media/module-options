@@ -16,16 +16,11 @@ class Test_Get extends TestCase {
 	public function tearDown() {
 		parent::tearDown();
 
-		remove_filter( "wpmedia_pre_get_option_{$key}", [ $this, 'set_pre_value' ] );
-		remove_filter( "wpmedia_get_option_{$key}", [ $this, 'set_post_value' ] );
-
 		delete_option( 'wpmedia' );
 	}
 
 	/**
 	 * @dataProvider configTestData
-	 *
-	 * @return void
 	 */
 	public function testShouldReturnExpectedValue( $option, $key, $config, $expected ) {
 		add_option( 'wpmedia', $option );
@@ -39,7 +34,7 @@ class Test_Get extends TestCase {
 		}
 
 		if ( isset( $config['post'] ) ) {
-			$this->post_value = $config['pre'];
+			$this->post_value = $config['post'];
 
 			add_filter( "wpmedia_get_option_{$key}", [ $this, 'set_post_value' ] );
 		}
@@ -48,6 +43,9 @@ class Test_Get extends TestCase {
 			$expected,
 			$options->get( $key, 'default' )
 		);
+
+		remove_filter( "wpmedia_pre_get_option_{$key}", [ $this, 'set_pre_value' ] );
+		remove_filter( "wpmedia_get_option_{$key}", [ $this, 'set_post_value' ] );
 	}
 
 	public function set_pre_value() {
