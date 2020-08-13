@@ -10,29 +10,22 @@ use WPMedia\Options\Tests\Integration\TestCase;
  * @group Options
  */
 class Test_Get extends TestCase {
+	/**
+	 * @dataProvider configTestData
+	 */
+	public function testShouldReturnExpectedValue( $option, $expected ) {
+		$options = new Options();
 
-	public function testShouldReturnDefaultWhenOptionDoesntExist() {
-		$options = new Options( 'wpmedia_options_' );
 
-		$this->assertNull( $options->get( 'test1' ) );
-		$this->assertFalse( $options->get( 'test2', false ) );
-		$this->assertSame( [ 'default' ], $options->get( 'test3', [ 'default' ] ) );
-	}
-
-	public function testShouldReturnOptionWhenExists() {
-		$options = new Options( 'wpmedia_options_' );
-
-		$data = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => [
-				'setting1' => 'some value',
-				'setting2' => 1,
-			],
-		];
-		foreach( $data as $key => $value ) {
-			update_option( "wpmedia_options_{$key}", $value );
-			$this->assertSame( $value, $options->get( $key ) );
+		if ( ! is_null( $option['value'] ) ) {
+			add_option( $option['name'], $option['value'] );
 		}
+
+		$this->assertSame(
+			$expected,
+			$options->get( $option['name'], $option['default'] )
+		);
+
+		delete_option( $option['name'] );
 	}
 }

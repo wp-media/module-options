@@ -11,7 +11,8 @@ return [
 			],
 			'key'      => 'rocket',
 			'config'   => [
-				'pre' => 'yes',
+				'exists' => true,
+				'pre'    => 'yes',
 			],
 			'expected' => 'yes',
 		],

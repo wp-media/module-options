@@ -10,39 +10,17 @@ use WPMedia\Options\Tests\Integration\TestCase;
  * @group SiteOptions
  */
 class Test_Set extends TestCase {
+	/**
+	 * @dataProvider configTestData
+	 */
+	public function testShouldSetOptionValue( $prefix, $name, $value ) {
+		$options = new SiteOptions( $prefix );
 
-	public function testShouldSetPrefixedOption() {
-		$options = new SiteOptions( 'wpmedia_options_' );
+		$options->set( $name, $value );
 
-		$data = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => [
-				'setting1' => 'some value',
-				'setting2' => 1,
-			],
-		];
-		foreach( $data as $name => $value ) {
-			$options->set( $name, $value );
-			$this->assertSame( $value, get_site_option( "wpmedia_options_{$name}" ) );
-		}
-	}
-
-
-	public function testShouldSetNonPrefixedOption() {
-		$options = new SiteOptions();
-
-		$data = [
-			'test1' => 'some value',
-			'test2' => 'off',
-			'test3' => [
-				'setting1' => 'some value',
-				'setting2' => 1,
-			],
-		];
-		foreach( $data as $name => $value ) {
-			$options->set( $name, $value );
-			$this->assertSame( $value, get_site_option( $name ) );
-		}
+		$this->assertSame(
+			$value,
+			get_site_option( "{$prefix}{$name}" )
+		);
 	}
 }

@@ -10,32 +10,16 @@ use WPMedia\Options\Tests\Integration\TestCase;
  * @group  Options
  */
 class Test_Delete extends TestCase {
+	/**
+	 * @dataProvider configTestData
+	 */
+	public function testShoulDeleteOption( $option ) {
+		$options = new Options( $option['prefix'] );
 
-	public function testShouldDeletePrefixedOption() {
-		$options = new Options( 'test_' );
+		add_option( "{$option['prefix']}{$option['name']}", $option['value'] );
 
-		add_option( 'test_option1', 'some value' );
-		$this->assertSame( 'some value', get_option( 'test_option1' ) );
-		$options->delete( 'option1' );
-		$this->assertFalse( get_option( 'test_option1' ) );
+		$options->delete( $option['name'] );
 
-		add_option( 'test_option2', [ 'some value' ] );
-		$this->assertSame( [ 'some value' ], get_option( 'test_option2' ) );
-		$options->delete( 'option2' );
-		$this->assertFalse( get_option( 'test_option2' ) );
-	}
-
-	public function testShouldDeleteNonPrefixedOption() {
-		$options = new Options();
-
-		add_option( 'test1', 'some value' );
-		$this->assertSame( 'some value', get_option( 'test1' ) );
-		$options->delete( 'test1' );
-		$this->assertFalse( get_option( 'test1' ) );
-
-		add_option( 'test2', [ 'some value' ] );
-		$this->assertSame( [ 'some value' ], get_option( 'test2' ) );
-		$options->delete( 'test2' );
-		$this->assertFalse( get_option( 'test2' ) );
+		$this->assertFalse( get_option( $option['name'] ) );
 	}
 }
