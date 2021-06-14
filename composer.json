@@ -19,18 +19,18 @@
 		"source": "https://github.com/wp-media/options"
 	},
     "require": {
-		"php": ">=5.6.0"
+		"php": ">=7"
 	},
 	"require-dev": {
-		"php": "^5.6 || ^7",
+		"php": "^7",
 		"brain/monkey": "^2.0",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"phpcompatibility/phpcompatibility-wp": "^2.0",
 		"phpstan/phpstan": "^0.12.3",
-		"phpunit/phpunit": "^5.7 || ^7",
-		"szepeviktor/phpstan-wordpress": "^0.6.0",
+		"phpunit/phpunit": "^7.5",
+		"szepeviktor/phpstan-wordpress": "^0.7.0",
 		"wp-coding-standards/wpcs": "^2",
-		"wp-media/phpunit": "^1.0"
+		"wp-media/phpunit": "^2.0"
 	},
 	"autoload": {
 		"psr-4": { "WPMedia\\Options\\": "." },
@@ -42,6 +42,7 @@
 	"scripts": {
 		"test-unit": "\"vendor/bin/wpmedia-phpunit\" unit path=Tests/Unit",
 		"test-integration": "\"vendor/bin/wpmedia-phpunit\" integration path=Tests/Integration/",
+		"run-stan":"vendor/bin/phpstan analyze --no-progress",
 		"run-tests": [
 			"@test-unit",
 			"@test-integration"
