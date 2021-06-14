@@ -21,12 +21,10 @@
 
 	<!-- Rules: Check PHP version compatibility - see https://github.com/PHPCompatibility/PHPCompatibilityWP -->
 	<rule ref="PHPCompatibility"/>
-	<config name="testVersion" value="5.6-"/>
-	<config name="minimum_supported_wp_version" value="4.9"/>
+	<config name="testVersion" value="7.1-"/>
+	<config name="minimum_supported_wp_version" value="5.3"/>
 
 	<rule ref="WordPress">
-        <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma"/>
-		<exclude name="Generic.PHP.NoSilencedErrors.Discouraged"/>
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
         <exclude name="Squiz.Commenting.FileComment.Missing"/>
