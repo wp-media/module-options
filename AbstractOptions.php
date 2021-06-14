@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options;
 
@@ -6,7 +7,6 @@ namespace WPMedia\Options;
  * Abstract class implementing OptionsInterface mandatory methods.
  */
 abstract class AbstractOptions implements OptionsInterface {
-
 	/**
 	 * The prefix used by options.
 	 *
@@ -21,7 +21,7 @@ abstract class AbstractOptions implements OptionsInterface {
 	 *
 	 * @return string Option name used to store it
 	 */
-	public function get_option_name( $name ) {
+	public function get_option_name( string $name ): string {
 		return $this->prefix . $name;
 	}
 
@@ -33,7 +33,7 @@ abstract class AbstractOptions implements OptionsInterface {
 	 *
 	 * @return mixed
 	 */
-	abstract public function get( $name, $default = null );
+	abstract public function get( string $name, $default = null );
 
 	/**
 	 * Sets the value of an option. Update the value if the option for the given name already exists.
@@ -43,7 +43,7 @@ abstract class AbstractOptions implements OptionsInterface {
 	 *
 	 * @return void
 	 */
-	abstract public function set( $name, $value );
+	abstract public function set( string $name, $value );
 
 	/**
 	 * Deletes the option with the given name.
@@ -52,16 +52,16 @@ abstract class AbstractOptions implements OptionsInterface {
 	 *
 	 * @return void
 	 */
-	abstract public function delete( $name );
+	abstract public function delete( string $name );
 
 	/**
 	 * Checks if the option with the given name exists.
 	 *
 	 * @param string $name Name of the option to check.
 	 *
-	 * @return boolean True if the option exists, false otherwise
+	 * @return bool
 	 */
-	public function has( $name ) {
+	public function has( string $name ): bool {
 		return null !== $this->get( $name );
 	}
 }

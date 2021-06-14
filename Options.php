@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options;
 
@@ -11,7 +12,7 @@ class Options extends AbstractOptions {
 	 *
 	 * @param string $prefix options prefix.
 	 */
-	public function __construct( $prefix = '' ) {
+	public function __construct( string $prefix = '' ) {
 		$this->prefix = $prefix;
 	}
 
@@ -23,7 +24,7 @@ class Options extends AbstractOptions {
 	 *
 	 * @return mixed
 	 */
-	public function get( $name, $default = null ) {
+	public function get( string $name, $default = null ) {
 		$option = get_option( $this->get_option_name( $name ), $default );
 
 		if ( is_array( $default ) && ! is_array( $option ) ) {
@@ -41,7 +42,7 @@ class Options extends AbstractOptions {
 	 *
 	 * @return void
 	 */
-	public function set( $name, $value ) {
+	public function set( string $name, $value ) {
 		update_option( $this->get_option_name( $name ), $value );
 	}
 
@@ -52,7 +53,7 @@ class Options extends AbstractOptions {
 	 *
 	 * @return void
 	 */
-	public function delete( $name ) {
+	public function delete( string $name ) {
 		delete_option( $this->get_option_name( $name ) );
 	}
 }

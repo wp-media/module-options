@@ -1,12 +1,12 @@
 <?php
+declare(strict_types=1);
+
 namespace WPMedia\Options;
 
 use ArrayAccess;
 
 /**
  * Manages the array data coming from an option.
- *
- * @since 3.0
  */
 class OptionArray implements ArrayAccess {
 	/**
@@ -29,7 +29,7 @@ class OptionArray implements ArrayAccess {
 	 * @param array  $options Array of data coming from an option.
 	 * @param string $slug    Slug used for the option name.
 	 */
-	public function __construct( $options, $slug ) {
+	public function __construct( array $options, string $slug ) {
 		$this->options = $options;
 		$this->slug    = $slug;
 	}
@@ -37,29 +37,25 @@ class OptionArray implements ArrayAccess {
 	/**
 	 * Checks if the provided key exists in the option data array.
 	 *
-	 * @since 3.0
-	 *
 	 * @param string $key key name.
-	 * @return boolean true if it exists, false otherwise
+	 *
+	 * @return bool
 	 */
-	public function has( $key ) {
+	public function has( string $key ): bool {
 		return isset( $this->options[ $key ] );
 	}
 
 	/**
 	 * Gets the value associated with a specific key.
 	 *
-	 * @since 3.0
-	 *
 	 * @param string $key key name.
 	 * @param mixed  $default default value to return if key doesn't exist.
+	 *
 	 * @return mixed
 	 */
-	public function get( $key, $default = null ) {
+	public function get( string $key, $default = null ) {
 		/**
 		 * Pre-filter any option before read
-		 *
-		 * @since 2.5
 		 *
 		 * @param mixed $default The default value.
 		*/
@@ -76,8 +72,6 @@ class OptionArray implements ArrayAccess {
 		/**
 		 * Filter any option after read
 		 *
-		 * @since 2.5
-		 *
 		 * @param mixed $value   The value associated with the provided key.
 		 * @param mixed $default The default value.
 		*/
@@ -87,25 +81,23 @@ class OptionArray implements ArrayAccess {
 	/**
 	 * Sets the value associated with a specific key.
 	 *
-	 * @since 3.0
-	 *
 	 * @param string $key key name.
 	 * @param mixed  $value to set.
+	 *
 	 * @return void
 	 */
-	public function set( $key, $value ) {
+	public function set( string $key, $value ) {
 		$this->options[ $key ] = $value;
 	}
 
 	/**
 	 * Sets multiple values.
 	 *
-	 * @since 3.0
-	 *
 	 * @param array $options An array of key/value pairs to set.
+	 *
 	 * @return void
 	 */
-	public function set_values( $options ) {
+	public function set_values( array $options ) {
 		foreach ( $options as $key => $value ) {
 			$this->set( $key, $value );
 		}
@@ -114,11 +106,9 @@ class OptionArray implements ArrayAccess {
 	/**
 	 * Gets the option array.
 	 *
-	 * @since 3.0
-	 *
 	 * @return array
 	 */
-	public function get_options() {
+	public function get_options(): array {
 		return $this->options;
 	}
 
@@ -126,9 +116,10 @@ class OptionArray implements ArrayAccess {
 	 * Whether an offset exists
 	 *
 	 * @param mixed $offset An offset to check for.
+	 *
 	 * @return bool
 	 */
-	public function offsetExists( $offset ) {
+	public function offsetExists( $offset ): bool {
 		return $this->has( $offset );
 	}
 
@@ -136,6 +127,7 @@ class OptionArray implements ArrayAccess {
 	 * Offset to retrieve
 	 *
 	 * @param mixed $offset The offset to retrieve.
+	 *
 	 * @return mixed
 	 */
 	public function offsetGet( $offset ) {
@@ -147,6 +139,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @param mixed $offset The offset to assign the value to.
 	 * @param mixed $value The value to set.
+	 *
 	 * @return void
 	 */
 	public function offsetSet( $offset, $value ) {
@@ -157,6 +150,7 @@ class OptionArray implements ArrayAccess {
 	 * Unset an offset
 	 *
 	 * @param mixed $offset The offset to unset.
+	 *
 	 * @return void
 	 */
 	public function offsetUnset( $offset ) {

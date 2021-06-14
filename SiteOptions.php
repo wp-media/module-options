@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options;
 
@@ -6,13 +7,12 @@ namespace WPMedia\Options;
  * Manages multisite options using the WordPress options API.
  */
 class SiteOptions extends AbstractOptions {
-
 	/**
 	 * Constructor
 	 *
 	 * @param string $prefix options prefix.
 	 */
-	public function __construct( $prefix = '' ) {
+	public function __construct( string $prefix = '' ) {
 		$this->prefix = $prefix;
 	}
 
@@ -24,7 +24,7 @@ class SiteOptions extends AbstractOptions {
 	 *
 	 * @return mixed
 	 */
-	public function get( $name, $default = null ) {
+	public function get( string $name, $default = null ) {
 		$option = get_site_option( $this->get_option_name( $name ), $default );
 
 		if ( is_array( $default ) && ! is_array( $option ) ) {
@@ -42,7 +42,7 @@ class SiteOptions extends AbstractOptions {
 	 *
 	 * @return void
 	 */
-	public function set( $name, $value ) {
+	public function set( string $name, $value ) {
 		update_site_option( $this->get_option_name( $name ), $value );
 	}
 
@@ -53,7 +53,7 @@ class SiteOptions extends AbstractOptions {
 	 *
 	 * @return void
 	 */
-	public function delete( $name ) {
+	public function delete( string $name ) {
 		delete_site_option( $this->get_option_name( $name ) );
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options;
 
@@ -11,9 +12,9 @@ interface OptionsInterface {
 	 *
 	 * @param string $name Unprefixed name of the option.
 	 *
-	 * @return string Option name used to store it
+	 * @return string
 	 */
-	public function get_option_name( $name);
+	public function get_option_name( string $name): string;
 
 	/**
 	 * Gets the option for the given name. Returns the default value if the value does not exist.
@@ -23,7 +24,7 @@ interface OptionsInterface {
 	 *
 	 * @return mixed
 	 */
-	public function get( $name, $default = null );
+	public function get( string $name, $default = null );
 
 	/**
 	 * Sets the value of an option. Update the value if the option for the given name already exists.
@@ -33,7 +34,7 @@ interface OptionsInterface {
 	 *
 	 * @return void
 	 */
-	public function set( $name, $value );
+	public function set( string $name, $value );
 
 	/**
 	 * Deletes the option with the given name.
@@ -42,14 +43,14 @@ interface OptionsInterface {
 	 *
 	 * @return void
 	 */
-	public function delete( $name );
+	public function delete( string $name );
 
 	/**
 	 * Checks if the option with the given name exists.
 	 *
 	 * @param string $name Name of the option to check.
 	 *
-	 * @return boolean True if the option exists, false otherwise
+	 * @return bool
 	 */
-	public function has( $name );
+	public function has( string $name ): bool;
 }
