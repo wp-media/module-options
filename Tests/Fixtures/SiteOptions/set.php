@@ -8,7 +8,7 @@ return [
 			'value'  => 'foobar',
 		],
 		'testShouldSetNonPrefixedOption' => [
-			'prefix' => null,
+			'prefix' => '',
 			'name'   => 'rocket',
 			'value'  => 'foobar',
 		],

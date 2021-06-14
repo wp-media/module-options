@@ -8,7 +8,7 @@ return [
 			'expected' => 'wpmedia_options_rocket',
 		],
 		'testShouldReturnNonPrefixedNameWhenNoPrefixIsSet' => [
-			'prefix'   => null,
+			'prefix'   => '',
 			'option'   => 'rocket',
 			'expected' => 'rocket',
 		],

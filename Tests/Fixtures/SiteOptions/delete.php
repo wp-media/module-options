@@ -11,7 +11,7 @@ return [
 		],
 		'testShouldDeleteNonPrefixedOption' => [
 			'option' => [
-				'prefix' => null,
+				'prefix' => '',
 				'name'   => 'rocket',
 				'value'  => 'yes',
 			],
