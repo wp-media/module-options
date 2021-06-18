@@ -1,24 +1,24 @@
 <?php
 
-namespace WPMedia\Options\Tests\Integration\Options;
+namespace WPMedia\Options\Tests\Integration\SiteOptions;
 
-use WPMedia\Options\Options;
+use WPMedia\Options\SiteOptions;
 use WPMedia\Options\Tests\Integration\TestCase;
 
 /**
- * @covers WPMedia\Options\Options::get
- * @group Options
+ * @covers WPMedia\Options\SiteOptions::get
+ * @group SiteOptions
  */
 class Test_Get extends TestCase {
 	/**
 	 * @dataProvider configTestData
 	 */
 	public function testShouldReturnExpectedValue( $option, $expected ) {
-		$options = new Options();
+		$options = new SiteOptions();
 
 
 		if ( ! is_null( $option['value'] ) ) {
-			add_option( $option['name'], $option['value'] );
+			add_site_option( $option['name'], $option['value'] );
 		}
 
 		$this->assertSame(
@@ -26,6 +26,6 @@ class Test_Get extends TestCase {
 			$options->get( $option['name'], $option['default'] )
 		);
 
-		delete_option( $option['name'] );
+		delete_site_option( $option['name'] );
 	}
 }

@@ -9,10 +9,7 @@
 
 	<file>.</file>
 	<!-- Ignoring Files and Folders: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#ignoring-files-and-folders -->
-	<exclude-pattern>/inc/deprecated/*</exclude-pattern>
-	<exclude-pattern>/inc/vendors/*</exclude-pattern>
-	<exclude-pattern>/tests/Integration/*</exclude-pattern>
-	<exclude-pattern>/tests/Unit/*</exclude-pattern>
+	<exclude-pattern>/Tests/*</exclude-pattern>
 	<exclude-pattern>/vendor/*</exclude-pattern>
 
 	<!-- ** HOW TO SCAN ** -->
@@ -24,27 +21,21 @@
 
 	<!-- Rules: Check PHP version compatibility - see https://github.com/PHPCompatibility/PHPCompatibilityWP -->
 	<rule ref="PHPCompatibility"/>
-	<config name="testVersion" value="5.6-"/>
-	<config name="minimum_supported_wp_version" value="4.7"/>
+	<config name="testVersion" value="7.1-"/>
+	<config name="minimum_supported_wp_version" value="5.3"/>
 
 	<rule ref="WordPress">
-        <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma"/>
-		<exclude name="Generic.PHP.NoSilencedErrors.Discouraged"/>
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
         <exclude name="Squiz.Commenting.FileComment.Missing"/>
         <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
         <exclude name="Squiz.PHP.CommentedOutCode.Found"/>
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
 	</rule>
-    <rule ref="WordPress.WP.I18n">
-        <properties>
-            <property name="text_domain" type="array" value="rocket" />
-        </properties>
-    </rule>
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
-            <property name="prefixes" type="array" value="rocket,wp_rocket" />
+            <property name="prefixes" type="array" value="wpmedia" />
         </properties>
     </rule>
     <rule ref="WordPress.Files.FileName">
@@ -52,43 +43,6 @@
             <property name="strict_class_file_names" value="false" />
         </properties>
     </rule>
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_readfile">
-		<exclude-pattern>inc/classes/buffer/class-cache.php</exclude-pattern>
-	</rule>
-	<rule ref="WordPress.PHP.NoSilencedErrors.Discouraged">
-		<exclude-pattern>inc/admin/admin.php</exclude-pattern>
-		<exclude-pattern>inc/front/process.php</exclude-pattern>
-		<exclude-pattern>uninstall.php</exclude-pattern>
-		<exclude-pattern>inc/classes/buffer/class-cache.php</exclude-pattern>
-		<exclude-pattern>inc/classes/admin/class-logs.php</exclude-pattern>
-		<exclude-pattern>inc/classes/logger/class-stream-handler.php</exclude-pattern>
-		<exclude-pattern>inc/classes/logger/class-logger.php</exclude-pattern>
-		<exclude-pattern>inc/classes/subscriber/third-party/Hostings/class-litespeed-subscriber.php</exclude-pattern>
-		<exclude-pattern>inc/classes/subscriber/third-party/plugins/ecommerce/class-woocommerce-subscriber.php</exclude-pattern>
-		<exclude-pattern>inc/classes/subscriber/third-party/plugins/security/class-sucuri-subscriber.php</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.DB.DirectDatabaseQuery.DirectQuery">
-		<exclude-pattern>inc/classes/admin/Database/class-optimization-process.php</exclude-pattern>
-		<exclude-pattern>inc/classes/admin/Database/class-optimization.php</exclude-pattern>
-		<exclude-pattern>inc/classes/optimization/CSS/class-critical-css.php</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.DB.DirectDatabaseQuery.NoCaching">
-		<exclude-pattern>inc/classes/admin/Database/class-optimization-process.php</exclude-pattern>
-		<exclude-pattern>inc/classes/admin/Database/class-optimization.php</exclude-pattern>
-		<exclude-pattern>inc/classes/optimization/CSS/class-critical-css.php</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.DB.PreparedSQL.NotPrepared">
-		<exclude-pattern>inc/classes/admin/Database/class-optimization-process.php</exclude-pattern>
-		<exclude-pattern>inc/classes/admin/Database/class-optimization.php</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.DB.PreparedSQL.InterpolatedNotPrepared">
-		<exclude-pattern>inc/classes/admin/Database/class-optimization-process.php</exclude-pattern>
-		<exclude-pattern>inc/classes/optimization/CSS/class-critical-css.php</exclude-pattern>
-	</rule>
 	<rule ref="WordPress-Docs"/>
 
 	<!-- Rules: WordPress Coding Standards - see

@@ -2,26 +2,35 @@
 
 namespace WPMedia\Options\Tests\Integration;
 
-use Brain\Monkey;
-use WPMedia\Options\Tests\TestCaseTrait;
-use WP_UnitTestCase;
+use ReflectionObject;
+use WPMedia\PHPUnit\Integration\TestCase as BaseTestCase;
 
-abstract class TestCase extends WP_UnitTestCase {
-	use TestCaseTrait;
+abstract class TestCase extends BaseTestCase {
+	protected $config;
 
-	/**
-	 * Prepares the test environment before each test.
-	 */
+
 	public function setUp() {
+		if ( empty( $this->config ) ) {
+			$this->loadTestDataConfig();
+		}
+
 		parent::setUp();
-		Monkey\setUp();
 	}
 
-	/**
-	 * Cleans up the test environment after each test.
-	 */
-	public function tearDown() {
-		Monkey\tearDown();
-		parent::tearDown();
+	public function configTestData() {
+		if ( empty( $this->config ) ) {
+			$this->loadTestDataConfig();
+		}
+
+		return isset( $this->config['test_data'] )
+			? $this->config['test_data']
+			: $this->config;
+	}
+
+	protected function loadTestDataConfig() {
+		$obj      = new ReflectionObject( $this );
+		$filename = $obj->getFileName();
+
+		$this->config = $this->getTestData( dirname( $filename ), basename( $filename, '.php' ) );
 	}
 }
