@@ -44,10 +44,12 @@
 		}
 	},
 	"autoload-dev": {
-		"psr-4": {
-			"WPMedia\\Options\\Tests\\": "Tests/"
-		}
-	},
+        "psr-4": {
+            "WPMedia\\Options\\Tests\\Unit\\": "tests/Unit",
+            "WPMedia\\Options\\Tests\\Integration\\": "tests/Integration",
+            "WPMedia\\Options\\Tests\\Fixtures\\": "tests/Fixtures"
+        }
+    },
 	"scripts": {
 		"phpcs": "vendor/bin/phpcs",
 		"phpcs:fix": "vendor/bin/phpcbf",
