@@ -4,13 +4,14 @@
 
 	<!-- For help in understanding this file: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
 	<!-- For help in using PHPCS: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="."/>
 
 	<!-- ** WHAT TO SCAN ** -->
 
-	<file>.</file>
+	<file>inc</file>
+	<file>Tests</file>
 	<!-- Ignoring Files and Folders: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#ignoring-files-and-folders -->
-	<exclude-pattern>/Tests/*</exclude-pattern>
-	<exclude-pattern>/vendor/*</exclude-pattern>
 
 	<!-- ** HOW TO SCAN ** -->
 
@@ -21,37 +22,22 @@
 
 	<!-- Rules: Check PHP version compatibility - see https://github.com/PHPCompatibility/PHPCompatibilityWP -->
 	<rule ref="PHPCompatibility"/>
-	<config name="testVersion" value="7.1-"/>
-	<config name="minimum_supported_wp_version" value="5.3"/>
+	<config name="testVersion" value="7.4-"/>
+	<config name="minimum_supported_wp_version" value="6.6"/>
 
 	<rule ref="WordPress">
-        <exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
-        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
-        <exclude name="Squiz.Commenting.FileComment.Missing"/>
-        <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
-        <exclude name="Squiz.PHP.CommentedOutCode.Found"/>
-		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
+		<exclude name="Squiz.Commenting.FileComment.Missing" />
+		<exclude name="Squiz.Commenting.ClassComment.Missing" />
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
 	</rule>
-    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-        <properties>
-            <property name="prefixes" type="array" value="wpmedia" />
-        </properties>
-    </rule>
     <rule ref="WordPress.Files.FileName">
         <properties>
             <property name="strict_class_file_names" value="false" />
         </properties>
     </rule>
-	<rule ref="WordPress-Docs"/>
-
-	<!-- Rules: WordPress Coding Standards - see
-		https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
-		WordPress-Extra includes WordPress-Core -->
-	<rule ref="WordPress-Extra">
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
-		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
-	</rule>
 
 	<!-- Enforce short array syntax: `[]` in place of `array()`. -->
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />
