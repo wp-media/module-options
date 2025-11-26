@@ -19,15 +19,15 @@ class SiteOptions extends AbstractOptions {
 	/**
 	 * Gets the option for the given name. Returns the default value if the value does not exist.
 	 *
-	 * @param string $name   Name of the option to get.
-	 * @param mixed  $default Default value to return if the value does not exist.
+	 * @param string $name          Name of the option to get.
+	 * @param mixed  $default_value Default value to return if the value does not exist.
 	 *
 	 * @return mixed
 	 */
-	public function get( string $name, $default = null ) {
-		$option = get_site_option( $this->get_option_name( $name ), $default );
+	public function get( string $name, $default_value = null ) {
+		$option = get_site_option( $this->get_option_name( $name ), $default_value );
 
-		if ( is_array( $default ) && ! is_array( $option ) ) {
+		if ( is_array( $default_value ) && ! is_array( $option ) ) {
 			$option = (array) $option;
 		}
 

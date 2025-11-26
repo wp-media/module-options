@@ -49,33 +49,34 @@ class OptionArray implements ArrayAccess {
 	 * Gets the value associated with a specific key.
 	 *
 	 * @param string $key key name.
-	 * @param mixed  $default default value to return if key doesn't exist.
+	 * @param mixed  $default_value default value to return if key doesn't exist.
 	 *
 	 * @return mixed
 	 */
-	public function get( string $key, $default = null ) {
+	public function get( string $key, $default_value = null ) {
 		/**
 		 * Pre-filter any option before read
 		 *
-		 * @param mixed $default The default value.
+		 * @param mixed  $value        Value pre-retrieved.
+		 * @param mixed $default_value The default value.
 		*/
-		$value = apply_filters( $this->slug . '_pre_get_option_' . $key, null, $default ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+		$value = apply_filters( $this->slug . '_pre_get_option_' . $key, null, $default_value ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
 
 		if ( null !== $value ) {
 			return $value;
 		}
 
 		if ( ! $this->has( $key ) ) {
-			return $default;
+			return $default_value;
 		}
 
 		/**
 		 * Filter any option after read
 		 *
-		 * @param mixed $value   The value associated with the provided key.
-		 * @param mixed $default The default value.
+		 * @param mixed $value         The value associated with the provided key.
+		 * @param mixed $default_value The default value.
 		*/
-		return apply_filters( $this->slug . '_get_option_' . $key, $this->options[ $key ], $default ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
+		return apply_filters( $this->slug . '_get_option_' . $key, $this->options[ $key ], $default_value ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
 	}
 
 	/**
@@ -86,7 +87,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-	public function set( string $key, $value ) {
+	public function set( string $key, $value ): void {
 		$this->options[ $key ] = $value;
 	}
 
@@ -97,7 +98,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-	public function set_values( array $options ) {
+	public function set_values( array $options ): void {
 		foreach ( $options as $key => $value ) {
 			$this->set( $key, $value );
 		}
@@ -130,6 +131,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @return mixed
 	 */
+	#[\ReturnTypeWillChange]
 	public function offsetGet( $offset ) {
 		return $this->get( $offset );
 	}
@@ -142,7 +144,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-	public function offsetSet( $offset, $value ) {
+	public function offsetSet( $offset, $value ): void {
 		$this->set( $offset, $value );
 	}
 
@@ -153,7 +155,7 @@ class OptionArray implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-	public function offsetUnset( $offset ) {
+	public function offsetUnset( $offset ): void {
 		unset( $this->options[ $offset ] );
 	}
 }

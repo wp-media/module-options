@@ -4,27 +4,36 @@ declare(strict_types=1);
 namespace WPMedia\Options;
 
 /**
- * Define mandatory methods to implement when using this package
+ * Abstract class implementing OptionsInterface mandatory methods.
  */
-interface OptionsInterface {
+abstract class AbstractOptions implements OptionsInterface {
+	/**
+	 * The prefix used by options.
+	 *
+	 * @var string
+	 */
+	protected $prefix;
+
 	/**
 	 * Gets the option name used to store the option in the WordPress database.
 	 *
 	 * @param string $name Unprefixed name of the option.
 	 *
-	 * @return string
+	 * @return string Option name used to store it
 	 */
-	public function get_option_name( string $name): string;
+	public function get_option_name( string $name ): string {
+		return $this->prefix . $name;
+	}
 
 	/**
 	 * Gets the option for the given name. Returns the default value if the value does not exist.
 	 *
-	 * @param string $name   Name of the option to get.
-	 * @param mixed  $default Default value to return if the value does not exist.
+	 * @param string $name          Name of the option to get.
+	 * @param mixed  $default_value Default value to return if the value does not exist.
 	 *
 	 * @return mixed
 	 */
-	public function get( string $name, $default = null );
+	abstract public function get( string $name, $default_value = null );
 
 	/**
 	 * Sets the value of an option. Update the value if the option for the given name already exists.
@@ -34,7 +43,7 @@ interface OptionsInterface {
 	 *
 	 * @return void
 	 */
-	public function set( string $name, $value );
+	abstract public function set( string $name, $value );
 
 	/**
 	 * Deletes the option with the given name.
@@ -43,7 +52,7 @@ interface OptionsInterface {
 	 *
 	 * @return void
 	 */
-	public function delete( string $name );
+	abstract public function delete( string $name );
 
 	/**
 	 * Checks if the option with the given name exists.
@@ -52,5 +61,7 @@ interface OptionsInterface {
 	 *
 	 * @return bool
 	 */
-	public function has( string $name ): bool;
+	public function has( string $name ): bool {
+		return null !== $this->get( $name );
+	}
 }
