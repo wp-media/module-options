@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options\Tests\Integration;
 
@@ -6,18 +7,32 @@ use ReflectionObject;
 use WPMedia\PHPUnit\Integration\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase {
+	/**
+	 * Configuration for the test data.
+	 *
+	 * @var array{'test_data'?: array<string, mixed>}
+	 */
 	protected $config;
 
+	/**
+	 * Setup method for the test case.
+	 *
+	 * @return void
+	 */
+	public function set_up() {
+		parent::set_up();
 
-	public function setUp() {
 		if ( empty( $this->config ) ) {
 			$this->loadTestDataConfig();
 		}
-
-		parent::setUp();
 	}
 
-	public function configTestData() {
+	/**
+	 * Get the test data configuration.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function configTestData(): array {
 		if ( empty( $this->config ) ) {
 			$this->loadTestDataConfig();
 		}
@@ -27,9 +42,18 @@ abstract class TestCase extends BaseTestCase {
 			: $this->config;
 	}
 
-	protected function loadTestDataConfig() {
+	/**
+	 * Load test data configuration.
+	 *
+	 * @return void
+	 */
+	protected function loadTestDataConfig(): void {
 		$obj      = new ReflectionObject( $this );
 		$filename = $obj->getFileName();
+
+		if ( false === $filename ) {
+			return;
+		}
 
 		$this->config = $this->getTestData( dirname( $filename ), basename( $filename, '.php' ) );
 	}

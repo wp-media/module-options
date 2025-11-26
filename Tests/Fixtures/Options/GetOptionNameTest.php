@@ -2,7 +2,7 @@
 
 return [
 	'test_data' => [
-		'testShouldReturnPrefixedNameWhenPrefixIsSet' => [
+		'testShouldReturnPrefixedNameWhenPrefixIsSet'      => [
 			'prefix'   => 'wpmedia_options_',
 			'option'   => 'rocket',
 			'expected' => 'wpmedia_options_rocket',

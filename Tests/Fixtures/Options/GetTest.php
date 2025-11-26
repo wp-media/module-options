@@ -3,15 +3,15 @@
 return [
 	'test_data' => [
 		'testShouldReturnDefaultWhenOptionDoesntExist' => [
-			'option' => [
+			'option'   => [
 				'name'    => 'rocket',
 				'default' => [],
 				'value'   => null,
 			],
 			'expected' => [],
 		],
-		'testShouldReturnOptionWhenExists' => [
-			'option' => [
+		'testShouldReturnOptionWhenExists'             => [
+			'option'   => [
 				'name'    => 'rocket',
 				'default' => '',
 				'value'   => 'foobar',
@@ -19,7 +19,7 @@ return [
 			'expected' => 'foobar',
 		],
 		'testShouldReturnOptionAsArrayWhenExistsAsStringAndDefaultIsArray' => [
-			'option' => [
+			'option'   => [
 				'name'    => 'rocket',
 				'default' => [],
 				'value'   => 'foobar',

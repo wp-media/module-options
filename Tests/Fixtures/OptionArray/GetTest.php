@@ -2,8 +2,8 @@
 
 return [
 	'test_data' => [
-		'testShouldReturnFilteredValueWhenPreFiltering' => [
-			'option' => [
+		'testShouldReturnFilteredValueWhenPreFiltering'    => [
+			'option'   => [
 				'foo'     => 'bar',
 				'test'    => 0,
 				'rocket'  => 'no',
@@ -17,7 +17,7 @@ return [
 			'expected' => 'yes',
 		],
 		'testShouldReturnValueWhenExistsAndNoPrefiltering' => [
-			'option' => [
+			'option'   => [
 				'foo'     => 'bar',
 				'test'    => 0,
 				'rocket'  => 'no',
@@ -29,8 +29,8 @@ return [
 			],
 			'expected' => 'no',
 		],
-		'testShouldReturnDefaultWhenKeyDoesntExist' => [
-			'option' => [
+		'testShouldReturnDefaultWhenKeyDoesntExist'        => [
+			'option'   => [
 				'foo'     => 'bar',
 				'test'    => 0,
 				'rocket'  => 'no',
@@ -42,8 +42,8 @@ return [
 			],
 			'expected' => 'default',
 		],
-		'testShouldReturnFilteredValueWhenPostFiltering' => [
-			'option' => [
+		'testShouldReturnFilteredValueWhenPostFiltering'   => [
+			'option'   => [
 				'foo'     => 'bar',
 				'test'    => 0,
 				'rocket'  => 'no',

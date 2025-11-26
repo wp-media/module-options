@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options\Tests\Unit\OptionArray;
 
@@ -11,11 +12,14 @@ use WPMedia\Options\Tests\Unit\TestCase;
  * @covers WPMedia\Options\OptionArray::get
  * @group  OptionArray
  */
-class Test_Get extends TestCase {
+class GetTest extends TestCase {
 	/**
 	 * @dataProvider configTestData
 	 *
-	 * @return void
+	 * @param array<string, mixed> $option   Option values.
+	 * @param string               $key      Key to get.
+	 * @param array<string, mixed> $config   Config for pre and post filters.
+	 * @param mixed                $expected Expected value.
 	 */
 	public function testShouldReturnExpectedValue( $option, $key, $config, $expected ) {
 		$options = Mockery::mock( OptionArray::class . '[has]', [ $option, 'wpmedia' ] );
@@ -31,7 +35,7 @@ class Test_Get extends TestCase {
 			$options->shouldReceive( 'has' )
 				->once()
 				->with( $key )
-				->andReturn( $config[ 'exists' ] );
+				->andReturn( $config['exists'] );
 		}
 
 		if ( isset( $config['post'] ) ) {

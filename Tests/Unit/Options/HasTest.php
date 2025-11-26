@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WPMedia\Options\Tests\Unit\Options;
 
@@ -10,9 +11,11 @@ use WPMedia\Options\Tests\Unit\TestCase;
  * @covers WPMedia\Options\Options::has
  * @group Options
  */
-class Test_Has extends TestCase {
+class HasTest extends TestCase {
 	/**
 	 * @dataProvider configTestData
+	 *
+	 * @param array<string, mixed> $option Array of test data.
 	 */
 	public function testShouldReturnExpected( $option ) {
 		$options = new Options();

@@ -2,7 +2,7 @@
 
 return [
 	'test_data' => [
-		'testShouldDeletePrefixedOption' => [
+		'testShouldDeletePrefixedOption'    => [
 			'option' => [
 				'prefix' => 'wp_',
 				'name'   => 'rocket',

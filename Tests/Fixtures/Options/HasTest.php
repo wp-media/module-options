@@ -4,13 +4,13 @@ return [
 	'test_data' => [
 		'testShouldReturnFalseWhenOptionNotExist' => [
 			'option' => [
-				'name' => 'rocket',
+				'name'  => 'rocket',
 				'value' => false,
 			],
 		],
-		'testShouldReturnTrueWhenOptionExist' => [
+		'testShouldReturnTrueWhenOptionExist'     => [
 			'option' => [
-				'name' => 'rocket',
+				'name'  => 'rocket',
 				'value' => [
 					'key' => 'value',
 				],

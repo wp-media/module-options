@@ -9,10 +9,10 @@ return [
 			'key'      => 'foobar',
 			'expected' => false,
 		],
-		'testShouldReturnTrueWhenArrayHasKey' => [
+		'testShouldReturnTrueWhenArrayHasKey'     => [
 			'option'   => [
 				'test'   => 'value',
-				'foobar' => 'foo'
+				'foobar' => 'foo',
 			],
 			'key'      => 'foobar',
 			'expected' => true,

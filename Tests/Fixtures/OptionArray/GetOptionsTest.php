@@ -2,7 +2,7 @@
 
 return [
 	'test_data' => [
-		'testShouldReturnEmptyArray' => [
+		'testShouldReturnEmptyArray'    => [
 			'option' => [],
 		],
 		'testShouldReturnArrayWithData' => [

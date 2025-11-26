@@ -2,7 +2,7 @@
 
 return [
 	'test_data' => [
-		'testShouldSetPrefixedOption' => [
+		'testShouldSetPrefixedOption'    => [
 			'prefix' => 'wpmedia_options_',
 			'name'   => 'rocket',
 			'value'  => 'foobar',

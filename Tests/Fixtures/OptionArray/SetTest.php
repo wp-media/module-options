@@ -3,12 +3,12 @@
 return [
 	'test_data' => [
 		'testShouldAddOptionWhenDoesntExist' => [
-			'option' => [
+			'option'   => [
 				'foo'  => 'bar',
 				'test' => 0,
 			],
-			'key'   => 'rocket',
-			'value' => 'yes',
+			'key'      => 'rocket',
+			'value'    => 'yes',
 			'expected' => [
 				'foo'    => 'bar',
 				'test'   => 0,
@@ -16,13 +16,13 @@ return [
 			],
 		],
 		'testShouldOverrideOptionWhenExists' => [
-			'option' => [
+			'option'   => [
 				'foo'    => 'bar',
 				'test'   => 0,
 				'rocket' => 'no',
 			],
-			'key'   => 'rocket',
-			'value' => 'yes',
+			'key'      => 'rocket',
+			'value'    => 'yes',
 			'expected' => [
 				'foo'    => 'bar',
 				'test'   => 0,
