@@ -54,8 +54,8 @@
 		"phpcs": "vendor/bin/phpcs",
 		"phpcs:fix": "vendor/bin/phpcbf",
 		"phpstan": "vendor/bin/phpstan analyze --memory-limit=2G",
-        "test-unit":"\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration tests/Unit/phpunit.xml.dist",
-        "test-integration": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration tests/Integration/phpunit.xml.dist",
+        "test-unit":"\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration Tests/Unit/phpunit.xml.dist",
+        "test-integration": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration Tests/Integration/phpunit.xml.dist",
         "run-tests": [
             "@test-unit",
             "@test-integration"
