@@ -45,9 +45,9 @@
 	},
 	"autoload-dev": {
         "psr-4": {
-            "WPMedia\\Options\\Tests\\Unit\\": "tests/Unit",
-            "WPMedia\\Options\\Tests\\Integration\\": "tests/Integration",
-            "WPMedia\\Options\\Tests\\Fixtures\\": "tests/Fixtures"
+            "WPMedia\\Options\\Tests\\Unit\\": "Tests/Unit",
+            "WPMedia\\Options\\Tests\\Integration\\": "Tests/Integration",
+            "WPMedia\\Options\\Tests\\Fixtures\\": "Tests/Fixtures"
         }
     },
 	"scripts": {
